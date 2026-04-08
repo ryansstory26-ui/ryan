@@ -25,6 +25,76 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
+
+
+    <style>
+  /* ... efek hover sebelumnya tetap ada ... */
+
+  /* Efek Fade-in saat Scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Delay untuk setiap section */
+  #about .fade-in { transition-delay: 100ms; }
+  #projects .fade-in { transition-delay: 200ms; }
+  #contact .fade-in { transition-delay: 300ms; }
+</style>
+
+    <style>
+  /* Efek Hover untuk Card Project */
+  .card {
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Efek Hover untuk Tombol */
+  .btn-primary {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(128, 0, 0, 0.3);
+  }
+
+  /* Efek Hover untuk Badge Skills */
+  .badge {
+    transition: all 0.3s ease;
+  }
+  
+  .badge:hover {
+    transform: scale(1.08);
+    background-color: #a00000 !important;
+  }
+
+  /* Efek Hover untuk Link Sosial di Footer */
+  .bi {
+    transition: all 0.3s ease;
+  }
+  
+  .bi:hover {
+    transform: scale(1.2) rotate(8deg);
+    color: #ff5722 !important;
+  }
+
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
     <!-- 3. Custom warna primary (sudah ada di kamu) -->
     <style>
       :root {
@@ -40,7 +110,7 @@
       }
 
       body {
-        background-color: #f8f9fa; /* default terang */
+        background-color: #64a4e4; /* default terang */
       }
     </style>
 
@@ -80,275 +150,696 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
       }
     </style>
+
+    <style>
+  :root {
+    --bs-primary: #800000;           /* Maroon utama */
+    --bs-primary-rgb: 128, 0, 0;
+  }
+
+  .navbar {
+    background-color: #500707 !important;
+  }
+
+  .btn-primary {
+    background-color: #800000;
+    border-color: #800000;
+  }
+
+  .btn-primary:hover {
+    background-color: #a00000;
+    border-color: #a00000;
+  }
+
+  .text-primary {
+    color: #800000 !important;
+  }
+
+  /* Spacing antar section */
+  section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 992px) {
+    section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+/* ==================== ANIMASI NAVBAR ==================== */
+.animate-navbar {
+  animation: navbarSlideDown 0.6s ease-out forwards;
+}
+
+@keyframes navbarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo hover */
+.logo-animate:hover {
+  transform: scale(1.08) rotate(3deg);
+  transition: all 0.4s ease;
+}
+
+/* Menu link underline */
+.menu-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #dc3545;
+  transition: width 0.4s ease;
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+/* Tombol Dark Mode */
+.theme-toggle-btn {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.18) rotate(25deg);
+  box-shadow: 0 0 20px rgba(220, 53, 69, 0.7);
+  border-color: #dc3545;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.92);
+}
+
+/* ==================== ANIMASI SPARKLE + MOVING STARS ==================== */
+
+/* Sparkle / Cahaya Kemilau */
+.hero-sparkle {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-sparkle::before,
+.hero-sparkle::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 6px rgba(255, 255, 255, 0.95);
+  animation: sparkle 3.5s linear infinite;
+  opacity: 0;
+}
+
+.hero-sparkle::after {
+  animation-delay: 1.8s;
+  width: 5px;
+  height: 5px;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  50%      { opacity: 0.95; transform: scale(1.3); }
+}
+
+/* Moving Stars (Bintang bergerak pelan) */
+.stars-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,255,255,0.9);
+  animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Variasi ukuran & kecepatan bintang */
+.star1 { width: 3px; height: 3px; animation-duration: 4s; }
+.star2 { width: 2px; height: 2px; animation-duration: 6s; }
+.star3 { width: 4px; height: 4px; animation-duration: 5.5s; }
+.star4 { width: 2px; height: 2px; animation-duration: 7s; }
+.star5 { width: 3px; height: 3px; animation-duration: 4.8s; }
+
+/* DARK MODE OVERRIDE - VERSI PALING KUAT */
+[data-bs-theme="light"] {
+    --bs-body-bg: #ffffff !important;
+    --bs-body-color: #212529 !important;
+    --bs-card-bg: #ffffff !important;
+    --bs-card-color: #212529 !important;
+    --bs-navbar-bg: #212529 !important;
+}
+
+/* ==================== DARK MODE FORCE - VERSI PALING LENGKAP ==================== */
+
+/* Dasar keseluruhan halaman */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #0f0f0f !important;
+    --bs-body-color: #e0e0e0 !important;
+    --bs-card-bg: #1a1a1a !important;
+    --bs-card-color: #e0e0e0 !important;
+}
+
+/* Body & HTML */
+body[data-bs-theme="dark"],
+html[data-bs-theme="dark"] {
+    background-color: #0f0f0f !important;
+    color: #e0e0e0 !important;
+}
+
+/* Navbar */
+.navbar[data-bs-theme="dark"] {
+    background-color: #5f1414 !important;
+}
+
+/* Section Contact */
+[data-bs-theme="dark"] #contact,
+[data-bs-theme="dark"] .contact-section {
+    background-color: #0f0f0f !important;
+}
+
+/* Card / Box di Contact */
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .bg-white,
+[data-bs-theme="dark"] .bg-light {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+    border-color: #333 !important;
+}
+
+/* Form input di Contact */
+[data-bs-theme="dark"] .form-control {
+    background-color: #2a2a2a !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+/* Placeholder text di form */
+[data-bs-theme="dark"] .form-control::placeholder {
+    color: #888 !important;
+}
+
+/* Text di Informasi Kontak */
+[data-bs-theme="dark"] .text-muted,
+[data-bs-theme="dark"] p small {
+    color: #aaaaaa !important;
+}
+
+/* Footer */
+[data-bs-theme="dark"] footer {
+    background-color: #05441c !important;
+    color: #e0e0e0 !important;
+}
+
+/* ==================== ULTRA PREMIUM DARK MODE + EFEK ==================== */
+
+[data-bs-theme="dark"] body {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%) !important;
+    overflow-x: hidden;
+}
+
+/* About - Soft Luxury */
+[data-bs-theme="dark"] #about {
+    background: linear-gradient(135deg, #1f1f1f 0%, #141414 100%) !important;
+    box-shadow: inset 0 0 80px rgba(128, 0, 0, 0.15); /* subtle maroon glow */
+}
+
+/* Projects - Deep & Dramatic (paling keren) */
+[data-bs-theme="dark"] #projects {
+    background: linear-gradient(135deg, #0c0c0c 0%, #111111 100%) !important;
+    position: relative;
+}
+
+/* Contact - Elegant Balance */
+[data-bs-theme="dark"] #contact {
+    background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%) !important;
+    box-shadow: inset 0 0 60px rgba(128, 0, 0, 0.1);
+}
+
+/* Light mode tetap clean */
+[data-bs-theme="light"] #about,
+[data-bs-theme="light"] #projects,
+[data-bs-theme="light"] #contact {
+    background-color: #f8f9fa !important;
+}
+
+/* ==================== EFEK PREMIUM ==================== */
+
+/* Subtle moving gradient overlay di Projects */
+[data-bs-theme="dark"] #projects::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(128, 0, 0, 0.08) 50%, transparent 60%);
+    background-size: 400% 400%;
+    animation: premiumFlow 25s ease infinite;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+/* Soft glow pada card project */
+[data-bs-theme="dark"] .card {
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-bs-theme="dark"] .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(128, 0, 0, 0.3);
+}
+
+/* Divider Ultra Premium */
+section:not(:last-child)::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #662222, #aa4444, #662222, transparent);
+    margin: 4rem auto 2rem;
+    width: 65%;
+    opacity: 0.5;
+}
+
+/* Animasi gradient */
+@keyframes premiumFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ==================== SPARKLE + STRONG EFFECT NAV & HERO ==================== */
+
+/* Sparkle di Hero Section */
+.hero-sparkle {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: sparkleAnim 4s linear infinite;
+    box-shadow: 0 0 8px #fff, 0 0 15px #ffcc00;
+    opacity: 0;
+}
+
+@keyframes sparkleAnim {
+    0%   { opacity: 0; transform: scale(0.5); }
+    50%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Navbar Strong Effect */
+.navbar {
+    transition: all 0.4s ease;
+    background: rgba(44, 25, 25, 0.95) !important;
+    backdrop-filter: blur(12px);
+}
+
+.navbar.scrolled {
+    background: rgba(22, 137, 22, 0.164) !important;
+    box-shadow: 0 10px 30px rgba(128, 0, 0, 0.4);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background: #ff5722;
+    transition: all 0.4s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.navbar-brand {
+    transition: all 0.4s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.08) rotate(3deg);
+    color: #ff5722 !important;
+}
+
+/* Theme Toggle Glow */
+#themeToggle {
+    transition: all 0.4s ease;
+}
+
+#themeToggle:hover {
+    transform: rotate(30deg) scale(1.2);
+    filter: drop-shadow(0 0 12px #ffcc00);
+}
+</style>
+
   </head>
 
-<body class="bg-light">
+<body class="bg-light pt-5">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold fs-4" href="#">RyanWeb</a>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-
-        <!-- Dark Mode Toggle -->
-        <div class="ms-3">
-          <button id="themeToggle" class="btn btn-outline-light btn-sm rounded-circle" aria-label="Toggle dark mode">
-            <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Spacer untuk navbar fixed -->
-  <div style="height: 80px;"></div>
-
-  <!-- Hero Section -->
-  <section class="bg-primary text-white text-center py-5">
-    <div class="container py-5">
-      <h1 class="display-3 fw-bold mb-4">Halo, Saya Ryan!</h1>
-      <p class="lead fs-4 mb-5">
-        Belajar web development dari nol dengan HTML, CSS, dan Bootstrap 5.
-      </p>
-      <a href="#projects" class="btn btn-light btn-lg px-5 py-3 fw-semibold">
-        Lihat Project Saya
-      </a>
-    </div>
-  </section>
-
-  <!-- Tentang Saya + Skills -->
-  <section id="about" class="py-5 bg-white">
-    <div class="container">
-      <div class="row align-items-center g-5">
-
-        <!-- Foto Profil -->
-        <div class="col-lg-5 text-center text-lg-start">
-          <img src="https://ryansstory26-ui.github.io/ryan/foto-ryan.jpg" 
-               alt="Foto Ryan" 
-               class="img-fluid rounded shadow-lg" 
-               style="max-width: 420px; width: 100%;">
-        </div>
-
-        <!-- Deskripsi + Skills -->
-        <div class="col-lg-7">
-          <h2 class="fw-bold text-primary mb-4">Tentang Saya</h2>
-          <p class="lead mb-4">
-            Halo! Saya Ryan dari Selangor. Saat ini sedang belajar web development dari nol 
-            dengan fokus pada HTML, CSS, dan Bootstrap 5.
-          </p>
-          <p class="mb-5">
-            Saya suka menciptakan tampilan website yang rapi, responsif, dan mudah digunakan. 
-            Tujuan saya adalah bisa membuat project sendiri dan mulai freelance dalam waktu dekat.
-          </p>
-
-          <!-- Skills -->
-          <h4 class="mt-5 mb-3 text-primary">Skills Saat Ini</h4>
-          <div class="row g-3">
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-filetype-html me-2"></i>HTML5
-              </span>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-filetype-css me-2"></i>CSS3
-              </span>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-bootstrap me-2"></i>Bootstrap 5
-              </span>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-phone me-2"></i>Responsive Design
-              </span>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-terminal me-2"></i>VS Code
-              </span>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <span class="badge bg-primary text-white p-3 fs-6 w-100">
-                <i class="bi bi-braces me-2"></i>Sedang Belajar JS
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
- <!-- Projects Section -->
-<section id="projects" class="py-5 bg-light">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
   <div class="container">
-    <h2 class="text-center mb-5 fw-bold text-primary">Project Saya</h2>
+    <a class="navbar-brand fw-bold fs-4" href="#">Ry: <span class="text-danger">RyanWeb</span></a>
+    
+    <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        
+        <!-- Theme Toggle -->
+        <li class="nav-item ms-3">
+          <button id="themeToggle" class="btn btn-link p-0 border-0" style="font-size: 1.4rem;">
+            <i id="themeIcon" class="bi bi-sun-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer -->
+<div style="height: 92px;"></div>
+
+ 
+
+
+<!-- HERO SECTION - DENGAN SPARKLE -->
+<section id="hero" class="position-relative py-5 text-white overflow-hidden" 
+         style="background: linear-gradient(135deg, #1a1a1a, #0f0f0f); min-height: 90vh; display: flex; align-items: center;">
+
+    <!-- Sparkle Container (Ini yang baru) -->
+    <div class="hero-sparkle" id="sparkleContainer"></div>
+
+    <div class="container position-relative z-3 text-center">
+        <h1 class="display-3 fw-bold mb-3">Halo, Saya Ryan!</h1>
+        <p class="lead fs-4 mb-5">Belajar Web Development dari Nol dengan Bootstrap 5</p>
+        
+        <a href="#projects" class="btn btn-danger btn-lg me-3">Lihat Project Saya</a>
+        <a href="#contact" class="btn btn-outline-light btn-lg">Hubungi Saya</a>
+    </div>
+</section>
+
+ <!-- About Me Section -->
+<section id="about" class="py-5 py-lg-6 bg-white">
+  <div class="container fade-in">
+    <div class="row align-items-center g-5">
+      
+      <!-- Foto Profil -->
+      <div class="col-lg-5 text-center">
+        <img src="https://via.placeholder.com/400x400/800000/ffffff?text=Foto+Ryan" 
+             alt="Ryan Profile" 
+             class="img-fluid rounded-circle shadow-sm" 
+             style="width: 280px; height: 280px; object-fit: cover;">
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="col-lg-7">
+        <h2 class="fw-bold mb-4 text-primary">Tentang Saya</h2>
+        
+        <p class="lead mb-4">
+          Halo, saya Ryan. Saya seorang pemula di bidang web development yang sedang belajar 
+          HTML, CSS, Bootstrap 5, dan JavaScript.
+        </p>
+        
+        <p class="mb-4">
+          Saat ini saya fokus membangun website responsif menggunakan Bootstrap. 
+          Portfolio ini adalah proyek latihan pertama saya untuk mengasah kemampuan 
+          dalam membuat tampilan yang clean, modern, dan user-friendly.
+        </p>
+
+        <h5 class="mt-5 mb-3">Skills Saat Ini</h5>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-primary fs-6 px-3 py-2">HTML5</span>
+          <span class="badge bg-primary fs-6 px-3 py-2">CSS3</span>
+          <span class="badge bg-primary fs-6 px-3 py-2">Bootstrap 5</span>
+          <span class="badge bg-primary fs-6 px-3 py-2">Responsive Design</span>
+          <span class="badge bg-primary fs-6 px-3 py-2">VS Code</span>
+          <span class="badge bg-secondary fs-6 px-3 py-2">JavaScript (Learning)</span>
+        </div>
+
+        <div class="mt-5">
+          <a href="#projects" class="btn btn-primary btn-lg px-5 me-3">Lihat Project Saya</a>
+          <a href="#contact" class="btn btn-outline-primary btn-lg px-5">Hubungi Saya</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+ <!-- Projects Section - Versi Rapi -->
+<section id="projects" class="py-5 bg-light">
+  <div class="container fade-in">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">Project Saya</h2>
+      <p class="lead text-muted">Beberapa project yang sudah saya buat menggunakan Bootstrap 5</p>
+    </div>
+
     <div class="row g-4">
 
       <!-- Project 1 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm border-0">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Landing Page 1</h5>
-            <p class="card-text">Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.</p>
-           <button class="btn btn-primary mt-auto" 
-        onclick="showProjectModal('Landing Page 1', 'Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.', 'https://www.youtube.com/embed/VWkVrRzqVPI?rel=0&modestbranding=1')">
-  Lihat Demo
-</button>
-            
-          </div>        
+            <h5 class="card-title fw-semibold">Landing Page 1</h5>
+            <p class="card-text flex-grow-1">Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.</p>
+            <button class="btn btn-primary mt-3" 
+                    onclick="showProjectModal('Landing Page 1', 'Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.', [
+                      'https://www.youtube.com/embed/RuYm0UlAt24?rel=0&modestbranding=1&playsinline=1',
+                      'https://www.youtube.com/embed/pSpy6_XqXdg?rel=0&modestbranding=1&playsinline=1',
+                      'https://www.youtube.com/embed/bDoilsrDhXs?rel=0&modestbranding=1&playsinline=1'
+                    ])">
+              Lihat Demo (3 Video)
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- Project 2 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm border-0">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Landing Page 2</h5>
-            <p class="card-text">Desain modern dengan gradient background dan tampilan yang lebih clean.</p>
-          <button class="btn btn-primary mt-auto" 
-        onclick="showProjectModal('Landing Page 2', 'Desain modern dengan gradient background dan tampilan yang lebih clean.', 'https://www.youtube.com/embed/k24Jjo2aklc?rel=0&modestbranding=1')">
-  Lihat Demo
-</button>
-            
+            <h5 class="card-title fw-semibold">Landing Page 2</h5>
+            <p class="card-text flex-grow-1">Desain modern dengan gradient background dan tampilan yang lebih clean.</p>
+            <button class="btn btn-primary mt-3" 
+                    onclick="showProjectModal('Landing Page 2', 'Desain modern dengan gradient background dan tampilan yang lebih clean.', [
+                      'https://www.youtube.com/embed/k24Jjo2aklc?rel=0&modestbranding=1&playsinline=1'
+                    ])">
+              Lihat Demo
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Project 3 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm border-0">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Landing Page 3</h5>
-            <p class="card-text">Portfolio style dengan dark mode support dan form kontak interaktif.</p>
-            <button class="btn btn-primary mt-auto" 
-        onclick="showProjectModal('Landing Page 3', 'Portfolio style dengan dark mode support dan form kontak interaktif.', 'https://www.youtube.com/embed/SmQPe6U7mr0?rel=0&modestbranding=1')">
-  Lihat Demo
-</button>
+            <h5 class="card-title fw-semibold">Landing Page 3</h5>
+            <p class="card-text flex-grow-1">Portfolio style dengan dark mode support dan form kontak interaktif.</p>
+            <button class="btn btn-primary mt-3" 
+                    onclick="showProjectModal('Landing Page 3', 'Portfolio style dengan dark mode support dan form kontak interaktif.', [
+                      'https://www.youtube.com/embed/SmQPe6U7mr0?rel=0&modestbranding=1&playsinline=1'
+                    ])">
+              Lihat Demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-semibold">Landing Page 4</h5>
+            <p class="card-text flex-grow-1">Deskripsi project ke-4 kamu di sini.</p>
+            <button class="btn btn-primary mt-3" 
+                    onclick="showProjectModal('Landing Page 4', 'Deskripsi project ke-4 kamu di sini.', [
+                      'https://www.youtube.com/embed/YmSziHuWBEI?rel=0&modestbranding=1&playsinline=1'
+                    ])">
+              Lihat Demo
+            </button>
           </div>
         </div>
       </div>
 
     </div>
   </div>
-</section> 
+</section>
 
-  <!-- Modal Project -->
-  <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title" id="projectModalLabel"></h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+ <!-- Contact Section -->
+<section id="contact" class="py-5 py-lg-6 bg-white">
+  <div class="container fade-in">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-primary mb-3">Hubungi Saya</h2>
+          <p class="lead text-muted">Punya pertanyaan atau ingin berkolaborasi? Silakan hubungi saya!</p>
         </div>
-        <div class="modal-body">
-          <h4 id="modalTitle" class="text-primary mb-3"></h4>
-          <p id="modalDesc" class="lead mb-4"></p>
 
-          <!-- Video YouTube -->
-          <div class="ratio ratio-16x9 mb-4">
-            <iframe id="modalVideo" 
-                    src="" 
-                    title="Video Demo" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
+        <div class="row g-5">
+          <!-- Form -->
+          <div class="col-lg-7">
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control form-control-lg" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control form-control-lg" placeholder="Subjek" required>
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control form-control-lg" rows="6" placeholder="Pesan Anda..." required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg px-5 py-3">Kirim Pesan</button>
+                </div>
+              </div>
+            </form>
           </div>
 
-          <div class="text-center mt-3">
-            <a id="modalLink" href="#" target="_blank" class="btn btn-primary btn-lg px-5">
-              Lihat Demo Langsung
-            </a>
+          <!-- Info Kontak -->
+          <div class="col-lg-5">
+            <div class="bg-light p-4 rounded h-100">
+              <h5 class="mb-4">Informasi Kontak</h5>
+              
+              <div class="mb-4">
+                <i class="bi bi-envelope text-primary fs-4 me-3"></i>
+                <strong>Email:</strong><br>
+                <a href="mailto:ryansstory26@gmail.com" class="text-decoration-none">ryansstory26@gmail.com</a>
+              </div>
+
+              <div class="mb-4">
+                <i class="bi bi-geo-alt text-primary fs-4 me-3"></i>
+                <strong>Lokasi:</strong><br>
+                Putra Heights, Selangor, Malaysia
+              </div>
+
+              <div>
+                <i class="bi bi-github text-primary fs-4 me-3"></i>
+                <strong>GitHub:</strong><br>
+                <a href="https://github.com/ryansstory26-ui" target="_blank" class="text-decoration-none">ryansstory26-ui</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-5 mt-auto">
-    <div class="container text-center">
-      <p class="mb-2 fs-5 fw-semibold">
-        © 2026 Ryan Web - Belajar dari Nol dengan Bootstrap 5
-      </p>
-      <p class="mb-4 text-white-50">
-        Dibuat dengan ❤️ di Selangor, Malaysia
-      </p>
-      <div class="mt-3">
-        <a href="#" class="text-white mx-3"><i class="bi bi-github fs-4"></i></a>
-        <a href="#" class="text-white mx-3"><i class="bi bi-linkedin fs-4"></i></a>
-        <a href="#" class="text-white mx-3"><i class="bi bi-instagram fs-4"></i></a>
-        <a href="#" class="text-white mx-3"><i class="bi bi-whatsapp fs-4"></i></a>
+<!-- Footer Final - Terlihat di Light & Dark Mode -->
+<footer class="bg-dark text-white py-5 mt-auto">
+  <div class="container fade-in">
+    <div class="row align-items-center">
+
+      <!-- Kiri -->
+      <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+        <p class="mb-1 fw-semibold fs-5">RyanWeb</p>
+        <p class="small text-muted mb-0">
+          © 2026 Ryan Web - Belajar dari Nol dengan Bootstrap 5
+        </p>
       </div>
+
+      <!-- Sosial Media -->
+      <div class="col-md-4 text-center mb-4 mb-md-0">
+        <div class="d-flex justify-content-center gap-4 fs-4">
+          <a href="https://github.com/ryansstory26-ui" target="_blank" class="text-white">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="https://facebook.com/R Ryan Anwar" target="_blank" class="text-white">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://instagram.com/ryans_story26" target="_blank" class="text-white">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://wa.me/601124380295" target="_blank" class="text-white">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <a href="https://tiktok.com/@ryananwar24" target="_blank" class="text-white">
+            <i class="bi bi-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Kanan -->
+      <div class="col-md-4 text-center text-md-end">
+        <p class="small text-muted mb-0">
+          Dibuat dengan ❤️ di Selangor, Malaysia
+        </p>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- Script Modal -->
-  <script>
-    function showProjectModal(title, desc, imageSrc = '', demoLink = '#', videoUrl = '') {
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalDesc').textContent = desc;
-      document.getElementById('projectModalLabel').textContent = title;
-      document.getElementById('modalLink').href = demoLink;
+  
 
-      const videoFrame = document.getElementById('modalVideo');
-      if (videoUrl) {
-        videoFrame.src = videoUrl;
-        videoFrame.style.display = 'block';
-      } else {
-        videoFrame.style.display = 'none';
-      }
-    }
-  </script>
-
-  <!-- Dark Mode Toggle Script -->
-  <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const html = document.documentElement;
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', savedTheme);
-    if (savedTheme === 'dark') {
-      themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
-    }
-
-    themeToggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-
-      if (next === 'dark') {
-        themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
-      } else {
-        themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
-      }
-    });
-  </script>
-<!-- Simple Modal -->
+<!-- MODAL FINAL - SEMUA VIDEO TETAP PLAY -->
 <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle"></h5>
+        <h5 class="modal-title fw-bold" id="modalTitle"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <p id="modalDesc" class="mb-3"></p>
-        <div id="videoContainer"></div>
+        <p id="modalDesc" class="mb-4 lead"></p>
+        <div id="videoContainer" class="row g-4"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -357,24 +848,132 @@
   </div>
 </div>
 
-<!-- Simple Script -->
+<!-- Script Modal - Semua Video Tetap Play -->
 <script>
-function showProjectModal(title, description, videoUrl) {
+function showProjectModal(title, description, videos) {
   document.getElementById('modalTitle').textContent = title;
   document.getElementById('modalDesc').textContent = description;
 
   const container = document.getElementById('videoContainer');
-  container.innerHTML = `
-    <div class="ratio ratio-16x9">
-      <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
-    </div>
-  `;
+  container.innerHTML = "";
+
+  videos.forEach((url, index) => {
+    container.innerHTML += `
+      <div class="col-12 mb-4">
+        <h6 class="mb-2">Video ${index + 1}</h6>
+        <div class="ratio ratio-16x9">
+          <iframe src="${url}" 
+                  frameborder="0" 
+                  allowfullscreen 
+                  allow="autoplay">
+          </iframe>
+        </div>
+      </div>
+    `;
+  });
 
   const modal = new bootstrap.Modal(document.getElementById('projectModal'));
   modal.show();
 }
 </script>
 
+<!-- Script Fade-in on Scroll -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const fadeElements = document.querySelectorAll('.fade-in');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  fadeElements.forEach(el => observer.observe(el));
+});
+</script>
+
+<!-- DARK MODE SCRIPT - VERSI PALING STABIL -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    if (!themeToggle || !themeIcon) {
+        console.log("Tombol dark mode tidak ditemukan");
+        return;
+    }
+
+    function setTheme(isDark) {
+        // Paksa Bootstrap mengenali tema
+        document.documentElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
+        
+        // Ubah ikon
+        if (isDark) {
+            themeIcon.classList.remove('bi-sun-fill');
+            themeIcon.classList.add('bi-moon-stars-fill');
+        } else {
+            themeIcon.classList.remove('bi-moon-stars-fill');
+            themeIcon.classList.add('bi-sun-fill');
+        }
+
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        console.log("Dark mode diubah ke:", isDark ? "GELAP" : "TERANG");
+    }
+
+    // Load tema saat halaman dibuka
+    const savedTheme = localStorage.getItem('theme');
+    const shouldBeDark = savedTheme === 'dark' || savedTheme === null;
+    setTheme(shouldBeDark);
+
+    // Klik tombol
+    themeToggle.addEventListener('click', function() {
+        const currentIsDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        setTheme(!currentIsDark);
+    });
+});
+</script>
+
+<script>
+// Sparkle Effect
+function createSparkle() {
+    const container = document.getElementById('sparkleContainer');
+    if (!container) return;
+
+    const star = document.createElement('div');
+    star.className = 'star';
+    
+    const size = Math.random() * 4 + 2;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 80}%`;
+    star.style.animationDelay = `-${Math.random() * 4}s`;
+    
+    container.appendChild(star);
+
+    setTimeout(() => star.remove(), 5000);
+}
+
+// Buat sparkle terus-menerus
+setInterval(createSparkle, 120);
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+});
+</script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
