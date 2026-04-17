@@ -1,626 +1,429 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <link
-      rel="icon"
-      href="https://ryansstory26-ui.github.io/ryan/favicon.ico"
-      type="image/x-icon"
-    />
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Portfolio Ryan - Belajar web development dari nol dengan HTML, CSS, Bootstrap 5. Lihat project, skills, dan hubungi saya!"
-    />
-    <title>RyanWeb - Portfolio</title>
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RyRyanWeb</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
 
-    <!-- 1. Bootstrap CSS CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- 2. Bootstrap Icons CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-
-
-
-  <style>
+<style>
   :root {
-    --bs-primary: #ff5722;
+    --bs-body-bg: #05040f;
+    --bs-body-color: #30c03c;
   }
 
-  body {
-    background: #0a0a0a;
-    color: #ffffff;
-    font-family: system-ui, -apple-system, sans-serif;
+  /* DOTS */
+  .sparkle {
+    position: absolute; width: 3px; height: 3px; background: #fff;
+    border-radius: 50%; z-index: 2; pointer-events: none;
+    box-shadow: 0 0 8px #fff, 0 0 20px #ffeb3b, 0 0 40px #ff5722;
+    animation: twinkle 1.2s infinite alternate;
   }
+  @keyframes twinkle { 0% {opacity:0.3; transform:scale(0.5);} 100% {opacity:1; transform:scale(2);} }
 
-  /* ==================== HERO & SPARKLE ==================== */
-  #hero {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .hero-sparkle {
+  /* METEOR DENGAN TRAILING (EKOR PANJANG) */
+  .meteor {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .star {
-    position: absolute;
-    background: #fff;
+    width: 4px; height: 4px;
+    background: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 0 10px #ffcc00;
-    animation: sparkleAnim 3s linear forwards;
+    box-shadow: 0 0 20px #67e8f9;
+    z-index: 4;
+    animation: meteorFall linear infinite;
   }
 
-  @keyframes sparkleAnim {
-    0%   { opacity: 0; transform: scale(0.3); }
-    40%  { opacity: 1; transform: scale(1.2); }
-    80%  { opacity: 1; }
-    100% { opacity: 0; transform: scale(0.5); }
-  }
-
-  /* Navbar */
-  .navbar {
-    background: rgba(10, 10, 10, 0.95) !important;
-    backdrop-filter: blur(12px);
-    transition: all 0.4s ease;
-  }
-
-  #themeToggle:hover {
-    transform: rotate(30deg) scale(1.25);
-    filter: drop-shadow(0 0 15px #ffcc00);
-  }
-
-  /* Fade-in */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease-out;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-    <style>
-  :root {
-    --bs-primary: #800000;           /* Maroon utama */
-    --bs-primary-rgb: 128, 0, 0;
-  }
-
-  .navbar {
-    background-color: #500707 !important;
-  }
-
-  .btn-primary {
-    background-color: #800000;
-    border-color: #800000;
-  }
-
-  .btn-primary:hover {
-    background-color: #a00000;
-    border-color: #a00000;
-  }
-
-  .text-primary {
-    color: #800000 !important;
-  }
-
-  /* Spacing antar section */
-  section {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
-  @media (min-width: 992px) {
-    section {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
-  }
-
-/* ==================== ANIMASI NAVBAR ==================== */
-.animate-navbar {
-  animation: navbarSlideDown 0.6s ease-out forwards;
-}
-
-@keyframes navbarSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Logo hover */
-.logo-animate:hover {
-  transform: scale(1.08) rotate(3deg);
-  transition: all 0.4s ease;
-}
-
-/* Menu link underline */
-.menu-link {
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.menu-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #dc3545;
-  transition: width 0.4s ease;
-}
-
-.menu-link:hover::after {
-  width: 100%;
-}
-
-/* Tombol Dark Mode */
-.theme-toggle-btn {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.theme-toggle-btn:hover {
-  transform: scale(1.18) rotate(25deg);
-  box-shadow: 0 0 20px rgba(220, 53, 69, 0.7);
-  border-color: #dc3545;
-}
-
-.theme-toggle-btn:active {
-  transform: scale(0.92);
-}
-
-/* ==================== ANIMASI SPARKLE + MOVING STARS ==================== */
-
-/* Sparkle / Cahaya Kemilau */
-.hero-sparkle {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-sparkle::before,
-.hero-sparkle::after {
-  content: '';
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px 6px rgba(255, 255, 255, 0.95);
-  animation: sparkle 3.5s linear infinite;
-  opacity: 0;
-}
-
-.hero-sparkle::after {
-  animation-delay: 1.8s;
-  width: 5px;
-  height: 5px;
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 0; transform: scale(0.4); }
-  50%      { opacity: 0.95; transform: scale(1.3); }
-}
-
-/* Moving Stars (Bintang bergerak pelan) */
-.stars-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255,255,255,0.9);
-  animation: twinkle linear infinite;
-}
-
-@keyframes twinkle {
-  0%   { opacity: 0.3; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-/* Variasi ukuran & kecepatan bintang */
-.star1 { width: 3px; height: 3px; animation-duration: 4s; }
-.star2 { width: 2px; height: 2px; animation-duration: 6s; }
-.star3 { width: 4px; height: 4px; animation-duration: 5.5s; }
-.star4 { width: 2px; height: 2px; animation-duration: 7s; }
-.star5 { width: 3px; height: 3px; animation-duration: 4.8s; }
-
-/* DARK MODE OVERRIDE - VERSI PALING KUAT */
-[data-bs-theme="light"] {
-    --bs-body-bg: #ffffff !important;
-    --bs-body-color: #212529 !important;
-    --bs-card-bg: #ffffff !important;
-    --bs-card-color: #212529 !important;
-    --bs-navbar-bg: #212529 !important;
-}
-
-/* ==================== DARK MODE FORCE - VERSI PALING LENGKAP ==================== */
-
-/* Dasar keseluruhan halaman */
-[data-bs-theme="dark"] {
-    --bs-body-bg: #0f0f0f !important;
-    --bs-body-color: #e0e0e0 !important;
-    --bs-card-bg: #1a1a1a !important;
-    --bs-card-color: #e0e0e0 !important;
-}
-
-/* Body & HTML */
-body[data-bs-theme="dark"],
-html[data-bs-theme="dark"] {
-    background-color: #0f0f0f !important;
-    color: #e0e0e0 !important;
-}
-
-/* Navbar */
-.navbar[data-bs-theme="dark"] {
-    background-color: #5f1414 !important;
-}
-
-/* Section Contact */
-[data-bs-theme="dark"] #contact,
-[data-bs-theme="dark"] .contact-section {
-    background-color: #0f0f0f !important;
-}
-
-/* Card / Box di Contact */
-[data-bs-theme="dark"] .card,
-[data-bs-theme="dark"] .bg-white,
-[data-bs-theme="dark"] .bg-light {
-    background-color: #1a1a1a !important;
-    color: #e0e0e0 !important;
-    border-color: #333 !important;
-}
-
-/* Form input di Contact */
-[data-bs-theme="dark"] .form-control {
-    background-color: #2a2a2a !important;
-    color: #e0e0e0 !important;
-    border-color: #444 !important;
-}
-
-/* Placeholder text di form */
-[data-bs-theme="dark"] .form-control::placeholder {
-    color: #888 !important;
-}
-
-/* Text di Informasi Kontak */
-[data-bs-theme="dark"] .text-muted,
-[data-bs-theme="dark"] p small {
-    color: #aaaaaa !important;
-}
-
-/* Footer */
-[data-bs-theme="dark"] footer {
-    background-color: #05441c !important;
-    color: #e0e0e0 !important;
-}
-
-/* ==================== ULTRA PREMIUM DARK MODE + EFEK ==================== */
-
-[data-bs-theme="dark"] body {
-    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%) !important;
-    overflow-x: hidden;
-}
-
-/* About - Soft Luxury */
-[data-bs-theme="dark"] #about {
-    background: linear-gradient(135deg, #1f1f1f 0%, #141414 100%) !important;
-    box-shadow: inset 0 0 80px rgba(128, 0, 0, 0.15); /* subtle maroon glow */
-}
-
-/* Projects - Deep & Dramatic (paling keren) */
-[data-bs-theme="dark"] #projects {
-    background: linear-gradient(135deg, #0c0c0c 0%, #111111 100%) !important;
-    position: relative;
-}
-
-/* Contact - Elegant Balance */
-[data-bs-theme="dark"] #contact {
-    background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%) !important;
-    box-shadow: inset 0 0 60px rgba(128, 0, 0, 0.1);
-}
-
-/* Light mode tetap clean */
-[data-bs-theme="light"] #about,
-[data-bs-theme="light"] #projects,
-[data-bs-theme="light"] #contact {
-    background-color: #f8f9fa !important;
-}
-
-/* ==================== EFEK PREMIUM ==================== */
-
-/* Subtle moving gradient overlay di Projects */
-[data-bs-theme="dark"] #projects::before {
+  .meteor::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(45deg, transparent 40%, rgba(128, 0, 0, 0.08) 50%, transparent 60%);
-    background-size: 400% 400%;
-    animation: premiumFlow 25s ease infinite;
-    pointer-events: none;
-    z-index: 1;
+    top: 50%;
+    left: -80px;
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, transparent, #67e8f9, #ffffff);
+    transform: rotate(35deg);
     opacity: 0.6;
-}
+  }
 
-/* Soft glow pada card project */
-[data-bs-theme="dark"] .card {
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
+  @keyframes meteorFall {
+    0%   { transform: translateY(-150px) translateX(-150px) rotate(35deg); opacity: 1; }
+    100% { transform: translateY(120vh) translateX(180px) rotate(35deg); opacity: 0; }
+  }
 
-[data-bs-theme="dark"] .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(128, 0, 0, 0.3);
-}
-
-/* Divider Ultra Premium */
-section:not(:last-child)::after {
+  /* NEBULA */
+  #hero::before {
     content: '';
-    display: block;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #662222, #aa4444, #662222, transparent);
-    margin: 4rem auto 2rem;
-    width: 65%;
-    opacity: 0.5;
-}
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(39, 57, 59, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(128, 156, 227, 0.35) 0%, transparent 60%);
+    animation: nebulaDrift 90s linear infinite;
+    z-index: 1;
+    opacity: 0.8;
+  }
+  @keyframes nebulaDrift { 0% {background-position: 0% 0%;} 100% {background-position: 120% 120%;} }
 
-/* Animasi gradient */
-@keyframes premiumFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ==================== HERO & SPARKLE ==================== */
-#hero {
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-}
-
-.hero-sparkle {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #ffcc00;
-  animation: sparkleAnim 3s linear forwards;
-  z-index: 2;
-}
-
-@keyframes sparkleAnim {
-  0%   { opacity: 0; transform: scale(0.3); }
-  40%  { opacity: 1; transform: scale(1.2); }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: scale(0.5); }
-}
-
-/* Pastikan konten hero di atas sparkle */
-#hero > .container,
-#hero > div.container {
-  position: relative;
-  z-index: 3;
-}
-
-/* Navbar Strong Effect */
-.navbar {
-    transition: all 0.4s ease;
-    background: rgba(44, 25, 25, 0.95) !important;
-    backdrop-filter: blur(12px);
-}
-
-.navbar.scrolled {
-    background: rgba(22, 137, 22, 0.164) !important;
-    box-shadow: 0 10px 30px rgba(128, 0, 0, 0.4);
-}
-
-.nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 50%;
-    background: #ff5722;
-    transition: all 0.4s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-.navbar-brand {
-    transition: all 0.4s ease;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.08) rotate(3deg);
-    color: #ff5722 !important;
-}
-
-/* Theme Toggle Glow */
-#themeToggle {
-    transition: all 0.4s ease;
-}
-
-#themeToggle:hover {
-    transform: rotate(30deg) scale(1.2);
-    filter: drop-shadow(0 0 12px #ffcc00);
-}
+  /* BURST */
+  .burst {
+    position: absolute; width: 8px; height: 8px; background: #ffeb3b;
+    border-radius: 50%; box-shadow: 0 0 25px #ffeb3b; z-index: 5;
+    animation: burstPop 1.1s forwards;
+  }
+  @keyframes burstPop { 0% {transform:scale(0.1); opacity:1;} 100% {transform:scale(6); opacity:0;} }
 </style>
 
-  </head>
+
+<style>
+  /* ==================== SECTION COLOR CUSTOMIZATION ==================== */
+  /* NAVBAR */
+  #navbar {
+    --section-bg: rgba(17, 102, 11, 0.179);
+    --section-text: #432a2aec;
+    --section-accent: #54190740;
+  }
+
+  /* HERO */
+  #hero {
+    --section-bg: linear-gradient(circle at center, #1f0047, #0a081a 75%);
+    --section-text: #c6c4f2;
+    --section-accent: #b7f09e12;
+  }
+
+  /* TENTANG SAYA / ABOUT */
+  #tentang {
+    --section-bg: #02482600;
+    --section-text: #05571f;
+    --section-accent: #9f5bff;
+  }
+
+  /* PROJECTS */
+  #projects {
+    --section-bg: #0b186799;
+    --section-text: #099c4b;
+    --section-accent: #00a2ff14;
+  }
+
+  /* CONTACT */
+  #contact {
+    --section-bg: #0f1a2e;
+    --section-text: #0c54a5;
+    --section-accent: #0a7a24;
+  }
+
+  /* FOOTER */
+  footer {
+    --section-bg: #024826;
+    --section-text: #aaaaaa;
+    --section-accent: #ff5722;
+  }
+
+  /* Terapkan warna ke masing-masing section */
+  #hero, #tentang, #projects, #contact, footer {
+    background: var(--section-bg);
+    color: var(--section-text);
+  }
+
+  /* Accent color (tombol, link, dll) */
+  .btn-danger, .accent-color { background-color: var(--section-accent) !important; }
+  .text-accent { color: var(--section-accent) !important; }
+</style>
+
+ <style>
+
+  /* DOTS SUPER KECIL + MAXIMUM + CAHAYA KUAT */
+  .sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 8px #fff,
+      0 0 18px #ffeb3b,
+      0 0 35px #ff5722,
+      0 0 55px #9f5bff,
+      0 0 80px rgba(159, 91, 255, 0.6);
+    pointer-events: none;
+    z-index: 2;
+    animation: twinkleMax 1.3s infinite alternate ease-in-out,
+               floatMax 16s infinite linear;
+  }
+
+  @keyframes twinkleMax {
+    0%   { opacity: 0.35; transform: scale(0.5); }
+    100% { opacity: 1;    transform: scale(1.9); }
+  }
+
+  @keyframes floatMax {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(var(--x), var(--y)) rotate(360deg); }
+  }
+</style>
+
+<style>
+/* ==================== NAVBAR PREMIUM ==================== */
+  .navbar {
+    background: rgba(10, 8, 26, 0) !important;
+    backdrop-filter: blur(24px);
+    box-shadow: 0 4px 30px rgba(229, 178, 50, 0.703);
+    border-bottom: 1px solid rgba(234, 186, 172, 0.329);
+  }
+
+  .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+  }
+  .navbar-brand:hover {
+    color: #097d43 !important;
+    text-shadow: 0 0 15px #ff5722;
+    transform: scale(1.08);
+  }
+
+  .nav-link {
+    transition: all 0.3s ease;
+  }
+  .nav-link:hover {
+    color: #078a4f !important;
+    transform: translateY(-2px);
+  }
+
+  /* Sound Toggle Button */
+  #soundToggle {
+    transition: all 0.3s ease;
+  }
+  #soundToggle:hover {
+    transform: scale(1.15);
+    color: #67e8f9 !important;
+  }
+
+    /* Button Hover Effect */
+    .btn {
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 87, 34, 0.4);
+    }
+    .btn-danger:hover {
+      background: #22ffa3;
+      border-color: #22ffde;
+    }
+
+/* ==================== HOVER & ANIMASI HIDUP ==================== */
+  .btn {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 87, 34, 0.4);
+  }
+
+  .btn-danger:hover {
+    background-color: #e64a19;
+  }
+
+  /* Text Glow Hover */
+  h1, h2, .nav-link {
+    transition: all 0.3s ease;
+  }
+  h1:hover, h2:hover {
+    text-shadow: 0 0 25px rgba(255, 87, 34, 0.8);
+  }
+
+  /* Card Animation */
+  .card {
+    transition: all 0.5s ease;
+  }
+  .card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(228, 237, 237, 0.611);
+  }
+
+  /* Navbar Hover */
+  .navbar-brand:hover {
+    transform: scale(1.08);
+  }
+  .humburger:hover {
+    transform:scale(1.1);
+    box-shadow: #9f5bff 0 0 10px;
+  }
+
+  /* Sparkle Text */
+  .hero-text {
+    animation: glowText 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowText {
+    from { text-shadow: 0 0 20px rgba(255,87,34,0.6); }
+    to   { text-shadow: 0 0 40px rgba(255,87,34,1); }
+  }
+</style>
+
+</head>
 
 <body class="bg-dark text-white">
 
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-nav- navbar-brand bg-primary fixed-top bg-success" id="navbar">
+    <div class="container-lg">
+      <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="#">
+        <img src="https://via.placeholder.com/40" alt="" class="me-2 rounded-circle"> 
+        RyanWeb
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold fs-4" href="#">Ry: <span class="text-danger">RyanWeb</span></a>
-    
-    <button class="navbar-toggler" type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarNav" 
-            aria-controls="navbarNav" 
-            aria-expanded="false" 
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <div class="collapse navbar-nav-collape " id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#tentang">Tentang Saya</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Project Saya</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Hubungi Saya</a></li>
+          
+          <li class="nav-item ms-3">
+            <button id="themeToggle" class="btn btn-link text-white p-0">
+              <i id="themeIcon" class="bi bi-moon-fill fs-4"></i>
+            </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        
-        <!-- Theme Toggle -->
-        <li class="nav-item ms-3">
-          <button id="themeToggle" class="btn btn-link p-0 border-0" style="font-size: 1.4rem;">
-            <i id="themeIcon" class="bi bi-sun-fill"></i>
-          </button>
-        </li>
-      </ul>
+<!-- Sound Toggle dengan Indicator -->
+<li class="nav-item ms-3">
+  <button id="soundToggle" class="btn btn-link text-white p-0 d-flex align-items-center gap-1">
+    <i id="soundIcon" class="bi bi-volume-up-fill fs-4"></i>
+    <small id="soundType" class="text-muted fs-6">Meteor</small>
+  </button>
+</li>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- HERO FINAL -->
-<section id="hero" class="position-relative text-white">
-  <div class="hero-sparkle" id="sparkleContainer"></div>
-  
-  <div class="container position-relative z-3 px-4">
-    <h1 class="display-1 fw-bold mb-4">Halo, Saya Ryan!</h1>
-    <p class="lead fs-4 mb-5 mx-auto" style="max-width: 720px;">
-      Belajar Web Development dari Nol dengan Bootstrap 5
-    </p>
+
+  <!-- HERO SECTION -->
+<section id="hero" class="min-vh-100 d-flex align-items-center justify-content-center text-center position-relative overflow-hidden"
+         style="background: radial-gradient(circle at center, #2a0066, #05040f 80%); padding-top: 80px;">
+
+  <!-- Nebula -->
+  <div id="nebula"></div>
+
+  <!-- DOTS SUPER BANYAK -->
+  <div class="sparkle" style="top:8%;left:5%;"></div>
+  <div class="sparkle" style="top:15%;left:18%;"></div>
+  <div class="sparkle" style="top:22%;left:35%;"></div>
+  <div class="sparkle" style="top:12%;left:65%;"></div>
+  <div class="sparkle" style="top:45%;left:8%;"></div>
+  <div class="sparkle" style="top:55%;left:78%;"></div>
+  <div class="sparkle" style="top:68%;left:25%;"></div>
+  <div class="sparkle" style="top:28%;left:82%;"></div>
+  <!-- ... (bisa ditambah lagi kalau mau) -->
+<!-- 70+ DOTS SUPER KECIL -->
+  <div class="sparkle" style="top:5%;left:3%;--x:90px;--y:-150px;animation-delay:0s"></div>
+  <div class="sparkle" style="top:10%;left:12%;--x:-65px;--y:140px;animation-delay:0.1s"></div>
+  <div class="sparkle" style="top:18%;left:22%;--x:100px;--y:-110px;animation-delay:0.3s"></div>
+  <div class="sparkle" style="top:12%;left:38%;--x:-85px;--y:160px;animation-delay:0.6s"></div>
+  <div class="sparkle" style="top:28%;left:8%;--x:75px;--y:-130px;animation-delay:1.2s"></div>
+  <div class="sparkle" style="top:45%;left:65%;--x:-95px;--y:95px;animation-delay:0.4s"></div>
+  <div class="sparkle" style="top:68%;left:18%;--x:120px;--y:-145px;animation-delay:1.8s"></div>
+  <div class="sparkle" style="top:22%;left:75%;--x:-55px;--y:135px;animation-delay:2.3s"></div>
+  <div class="sparkle" style="top:52%;left:32%;--x:85px;--y:-120px;animation-delay:0.9s"></div>
+  <div class="sparkle" style="top:78%;left:48%;--x:-90px;--y:80px;animation-delay:1.5s"></div>
+
+  <!-- Layer 2 -->
+  <div class="sparkle" style="top:8%;left:68%;--x:70px;--y:-140px;animation-delay:2.7s"></div>
+  <div class="sparkle" style="top:38%;left:15%;--x:-80px;--y:150px;animation-delay:3.1s"></div>
+  <div class="sparkle" style="top:60%;left:80%;--x:105px;--y:-95px;animation-delay:1.4s"></div>
+  <div class="sparkle" style="top:25%;left:52%;--x:-70px;--y:165px;animation-delay:3.6s"></div>
+  <div class="sparkle" style="top:70%;left:12%;--x:115px;--y:-85px;animation-delay:4.2s"></div>
+  <div class="sparkle" style="top:15%;left:85%;--x:-50px;--y:120px;animation-delay:2.1s"></div>
+  <div class="sparkle" style="top:48%;left:42%;--x:95px;--y:-135px;animation-delay:3.9s"></div>
+  <div class="sparkle" style="top:65%;left:72%;--x:-85px;--y:100px;animation-delay:2.5s"></div>
+  <div class="sparkle" style="top:30%;left:25%;--x:110px;--y:-160px;animation-delay:4.8s"></div>
+  <div class="sparkle" style="top:82%;left:65%;--x:-75px;--y:90px;animation-delay:1.9s"></div>
+
+  <!-- Layer 3 (Extra Padat) -->
+  <div class="sparkle" style="top:20%;left:8%;--x:80px;--y:-100px;animation-delay:5.2s"></div>
+  <div class="sparkle" style="top:55%;left:38%;--x:-60px;--y:145px;animation-delay:4.5s"></div>
+  <div class="sparkle" style="top:42%;left:82%;--x:100px;--y:-115px;animation-delay:3.8s"></div>
+  <div class="sparkle" style="top:75%;left:45%;--x:-80px;--y:155px;animation-delay:5.5s"></div>
+  <div class="sparkle" style="top:18%;left:48%;--x:65px;--y:-130px;animation-delay:6.1s"></div>
+  <div class="sparkle" style="top:62%;left:22%;--x:-95px;--y:110px;animation-delay:4.9s"></div>
+  <div class="sparkle" style="top:35%;left:70%;--x:120px;--y:-90px;animation-delay:5.8s"></div>
+  <div class="sparkle" style="top:80%;left:85%;--x:-70px;--y:80px;animation-delay:3.4s"></div>
+
+
+  <!-- Meteor Gila (banyak) -->
+  <div class="meteor" style="top:5%;left:10%;animation-duration:3.5s"></div>
+  <div class="meteor" style="top:18%;left:5%;animation-duration:5s;animation-delay:0.8s"></div>
+  <div class="meteor" style="top:35%;left:20%;animation-duration:4s;animation-delay:2.2s"></div>
+  <div class="meteor" style="top:12%;left:75%;animation-duration:6s;animation-delay:1.5s"></div>
+  <div class="meteor" style="top:50%;left:80%;animation-duration:3.8s;animation-delay:3s"></div>
+  <div class="meteor" style="top:25%;left:45%;animation-duration:4.5s;animation-delay:4.1s"></div>
+
+  <div class="container position-relative z-3">
+    <h1 class="display-1 fw-bold mb-3 hero-title" style="text-shadow: 0 0 40px #ff5722, 0 0 80px #67e8f9;">Halo, Saya Ryan!</h1>
+    <p class="lead fs-4 mb-5">Belajar Web Development dari Nol dengan Bootstrap 5</p>
     
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
       <a href="#projects" class="btn btn-danger btn-lg px-5 py-3">Lihat Project Saya</a>
       <a href="#contact" class="btn btn-outline-light btn-lg px-5 py-3">Hubungi Saya</a>
     </div>
   </div>
 </section>
 
- <!-- About Me Section -->
-<section id="about" class="py-5 py-lg-6 bg-white">
+
+<!-- ABOUT SECTION -->
+<section id="about" class="py-5 bg-success-subtle">
   <div class="container fade-in">
     <div class="row align-items-center g-5">
       
-      
-    <!-- Foto Profil dari GitHub -->
-<img src="https://raw.githubusercontent.com/ryansstory26-ui/ryan/main/foto-ryan.jpg" 
-     alt="Ryan Profile" 
-     class="img-fluid rounded-circle shadow-sm"
-     style="width: 280px; height: 280px; object-fit: cover; border: 5px solid #ff5722;">
+      <!-- Foto Profil -->
+      <div class="col-lg-5 text-center">
+        <img src="https://raw.githubusercontent.com/ryansstory26-ui/ryan/main/foto-ryan.jpg" 
+             alt="Ryan" 
+             class="img-fluid rounded-circle shadow" 
+             style="width: 280px; border: 5px solid #FF5722;">
       </div>
 
-      <!-- Deskripsi -->
+      <!-- Teks Tentang Saya -->
       <div class="col-lg-7">
-        <h2 class="fw-bold mb-4 text-primary">Tentang Saya</h2>
-        
-        <p class="lead mb-4">
-          Halo, saya Ryan. Saya seorang pemula di bidang web development yang sedang belajar 
-          HTML, CSS, Bootstrap 5, dan JavaScript.
+        <h2 class="display-5 fw-bold text-success-emphasis mb-4">Tentang Saya</h2>
+        <p class="lead fs-4">
+          Halo, saya Ryan. Saya sedang belajar HTML, CSS, Bootstrap 5, dan JavaScript.
+        </p>
+        <p class="fs-5 text-light-emphasis">
+          Portfolio ini adalah proyek latihan pertama saya untuk mengasah kemampuan membuat website responsif yang modern dan user-friendly. 
+          Saya suka belajar hal baru dan ingin terus berkembang di bidang web development.
         </p>
         
-        <p class="mb-4">
-          Saat ini saya fokus membangun website responsif menggunakan Bootstrap. 
-          Portfolio ini adalah proyek latihan pertama saya untuk mengasah kemampuan 
-          dalam membuat tampilan yang clean, modern, dan user-friendly.
-        </p>
-
-        <h5 class="mt-5 mb-3">Skills Saat Ini</h5>
-        <div class="d-flex flex-wrap gap-2">
-          <span class="badge bg-primary fs-6 px-3 py-2">HTML5</span>
-          <span class="badge bg-primary fs-6 px-3 py-2">CSS3</span>
-          <span class="badge bg-primary fs-6 px-3 py-2">Bootstrap 5</span>
-          <span class="badge bg-primary fs-6 px-3 py-2">Responsive Design</span>
-          <span class="badge bg-primary fs-6 px-3 py-2">VS Code</span>
-          <span class="badge bg-secondary fs-6 px-3 py-2">JavaScript (Learning)</span>
-        </div>
-
-        <div class="mt-5">
-          <a href="#projects" class="btn btn-primary btn-lg px-5 me-3">Lihat Project Saya</a>
-          <a href="#contact" class="btn btn-outline-primary btn-lg px-5">Hubungi Saya</a>
+        <div class="mt-4">
+          <a href="#projects" class="btn btn-danger btn-lg me-3">Lihat Project Saya</a>
+          <a href="#contact" class="btn btn-outline-light btn-lg">Hubungi Saya</a>
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>
 
- <!-- Projects Section - Versi Rapi -->
-<section id="projects" class="py-5 bg-light">
+<!-- PROJECTS SECTION -->
+<section id="projects" class="py-5 bg-blue-subtle">
   <div class="container fade-in">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-primary">Project Saya</h2>
-      <p class="lead text-muted">Beberapa project yang sudah saya buat menggunakan Bootstrap 5</p>
-    </div>
-
+    <h2 class="display-5 fw-bold text-center text-blue mb-5">Project Saya</h2>
+    
     <div class="row g-4">
 
       <!-- Project 1 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 bg-dark border-secondary">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-semibold">Landing Page 1</h5>
-            <p class="card-text flex-grow-1">Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.</p>
-            <button class="btn btn-primary mt-3" 
-                    onclick="showProjectModal('Landing Page 1', 'Hero section, navbar responsif, dan grid sederhana dengan Bootstrap 5.', [
-                      'https://www.youtube.com/embed/RuYm0UlAt24?rel=0&modestbranding=1&playsinline=1',
-                      'https://www.youtube.com/embed/pSpy6_XqXdg?rel=0&modestbranding=1&playsinline=1',
-                      'https://www.youtube.com/embed/bDoilsrDhXs?rel=0&modestbranding=1&playsinline=1'
-                    ])">
-              Lihat Demo (3 Video)
+            <h5 class="card-title text-white">Landing Page 1</h5>
+            <p class="card-text text-light-emphasis">Deskripsi singkat project pertama. Responsive design dengan Bootstrap.</p>
+            <button class="btn btn-danger mt-auto" 
+                    onclick="showProjectModal('Landing Page 1', 'https://www.youtube.com/embed/pSpy6_XqXdg')">
+              Lihat Demo
             </button>
           </div>
         </div>
@@ -628,14 +431,12 @@ section:not(:last-child)::after {
 
       <!-- Project 2 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 bg-dark border-secondary">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-semibold">Landing Page 2</h5>
-            <p class="card-text flex-grow-1">Desain modern dengan gradient background dan tampilan yang lebih clean.</p>
-            <button class="btn btn-primary mt-3" 
-                    onclick="showProjectModal('Landing Page 2', 'Desain modern dengan gradient background dan tampilan yang lebih clean.', [
-                      'https://www.youtube.com/embed/k24Jjo2aklc?rel=0&modestbranding=1&playsinline=1'
-                    ])">
+            <h5 class="card-title text-white">Landing Page 2</h5>
+            <p class="card-text text-light-emphasis">Project kedua dengan fitur dark mode dan animasi.</p>
+            <button class="btn btn-danger mt-auto" 
+                    onclick="showProjectModal('Landing Page 2', 'https://www.youtube.com/embed/VWkVrRzqVPI')">
               Lihat Demo
             </button>
           </div>
@@ -644,30 +445,12 @@ section:not(:last-child)::after {
 
       <!-- Project 3 -->
       <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 bg-dark border-secondary">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-semibold">Landing Page 3</h5>
-            <p class="card-text flex-grow-1">Portfolio style dengan dark mode support dan form kontak interaktif.</p>
-            <button class="btn btn-primary mt-3" 
-                    onclick="showProjectModal('Landing Page 3', 'Portfolio style dengan dark mode support dan form kontak interaktif.', [
-                      'https://www.youtube.com/embed/SmQPe6U7mr0?rel=0&modestbranding=1&playsinline=1'
-                    ])">
-              Lihat Demo
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-semibold">Landing Page 4</h5>
-            <p class="card-text flex-grow-1">Deskripsi project ke-4 kamu di sini.</p>
-            <button class="btn btn-primary mt-3" 
-                    onclick="showProjectModal('Landing Page 4', 'Deskripsi project ke-4 kamu di sini.', [
-                      'https://www.youtube.com/embed/YmSziHuWBEI?rel=0&modestbranding=1&playsinline=1'
-                    ])">
+            <h5 class="card-title text-white">Landing Page 3</h5>
+            <p class="card-text text-light-emphasis">Project ketiga dengan modal video dan efek keren.</p>
+            <button class="btn btn-danger mt-auto" 
+                    onclick="showProjectModal('Landing Page 3', 'https://www.youtube.com/embed/k24Jjo2aklc')">
               Lihat Demo
             </button>
           </div>
@@ -678,129 +461,111 @@ section:not(:last-child)::after {
   </div>
 </section>
 
- <!-- Contact Section -->
-<section id="contact" class="py-5 py-lg-6 bg-white">
-  <div class="container fade-in">
-    <div class="row justify-content-center">
-      <div class="col-lg-9">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold text-primary mb-3">Hubungi Saya</h2>
-          <p class="lead text-muted">Punya pertanyaan atau ingin berkolaborasi? Silakan hubungi saya!</p>
-        </div>
-
-        <div class="row g-5">
-          <!-- Form -->
-          <div class="col-lg-7">
-            <form>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <input type="text" class="form-control form-control-lg" placeholder="Nama Lengkap" required>
-                </div>
-                <div class="col-md-6">
-                  <input type="email" class="form-control form-control-lg" placeholder="Email Address" required>
-                </div>
-                <div class="col-12">
-                  <input type="text" class="form-control form-control-lg" placeholder="Subjek" required>
-                </div>
-                <div class="col-12">
-                  <textarea class="form-control form-control-lg" rows="6" placeholder="Pesan Anda..." required></textarea>
-                </div>
-                <div class="col-12 text-center">
-                  <button type="submit" class="btn btn-primary btn-lg px-5 py-3">Kirim Pesan</button>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <!-- Info Kontak -->
-          <div class="col-lg-5">
-            <div class="bg-light p-4 rounded h-100">
-              <h5 class="mb-4">Informasi Kontak</h5>
-              
-              <div class="mb-4">
-                <i class="bi bi-envelope text-primary fs-4 me-3"></i>
-                <strong>Email:</strong><br>
-                <a href="mailto:ryansstory26@gmail.com" class="text-decoration-none">ryansstory26@gmail.com</a>
-              </div>
-
-              <div class="mb-4">
-                <i class="bi bi-geo-alt text-primary fs-4 me-3"></i>
-                <strong>Lokasi:</strong><br>
-                Putra Heights, Selangor, Malaysia
-              </div>
-
-              <div>
-                <i class="bi bi-github text-primary fs-4 me-3"></i>
-                <strong>GitHub:</strong><br>
-                <a href="https://github.com/ryansstory26-ui" target="_blank" class="text-decoration-none">ryansstory26-ui</a>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- FOOTER DENGAN LINK -->
+  <footer class="py-lg-4 bg-dark- text-center">
+    <div class="container fade-in">
+      <p class="mb-2">&copy; 2026 Ryan Web - Belajar dari Nol dengan Bootstrap 5</p>
+      <p class="mb-4 small">Dibuat dengan ❤️ di Selangor, Malaysia</p>
+      
+      <div class="d-flex justify-content-center gap-4">
+        <a href="https://github.com/ryasstory26-ui" target="_blank"><i class="bi bi-github fs-3"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin fs-3"></i></a>
+        <a href="https://wa.me/601124380295" target="_blank"><i class="bi bi-whatsapp fs-3"></i></a>
+        <a href="https://instagram.com/ryans_story26" target="_blank"><i class="bi bi-instagram fs-3"></i></a>
+        <a href="https://www.tiktok.com/@ryananwar24" target="_blank"><i class="bi bi-tiktok fs-3"></i></a>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- Footer Final - Terlihat di Light & Dark Mode -->
-<footer class="bg-dark text-white py-5 mt-auto">
-  <div class="container fade-in">
-    <div class="row align-items-center">
+  <!-- Bagian lain tetap sama (Tentang, Projects, Contact, Footer) -->
+  <!-- ... -->
 
-      <!-- Kiri -->
-      <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-        <p class="mb-1 fw-semibold fs-5">RyanWeb</p>
-        <p class="small text-muted mb-0">
-          © 2026 Ryan Web - Belajar dari Nol dengan Bootstrap 5
-        </p>
-      </div>
-
-      <!-- Sosial Media -->
-      <div class="col-md-4 text-center mb-4 mb-md-0">
-        <div class="d-flex justify-content-center gap-4 fs-4">
-          <a href="https://github.com/ryansstory26-ui" target="_blank" class="text-white">
-            <i class="bi bi-github"></i>
-          </a>
-          <a href="https://facebook.com/R Ryan Anwar" target="_blank" class="text-white">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://instagram.com/ryans_story26" target="_blank" class="text-white">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://wa.me/601124380295" target="_blank" class="text-white">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-          <a href="https://tiktok.com/@ryananwar24" target="_blank" class="text-white">
-            <i class="bi bi-tiktok"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Kanan -->
-      <div class="col-md-4 text-center text-md-end">
-        <p class="small text-muted mb-0">
-          Dibuat dengan ❤️ di Selangor, Malaysia
-        </p>
-      </div>
-
-    </div>
-  </div>
-</footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   
-<!-- ==================== SCRIPT SPARKLE + MODAL ==================== -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Modal untuk Project -->
+<div class="modal fade" id="projectModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="modalTitle">Project</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9" id="modalVideo"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-// Sparkle Effect
-function createSparkle() {
-    const container = document.getElementById('sparkleContainer');
-    if (!container) return;
+  // project 
+function showProjectModal(title, videoUrl) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalVideo').innerHTML = `
+    <iframe width="100%" height="100%" 
+            src="${videoUrl}" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>`;
+  new bootstrap.Modal(document.getElementById('projectModal')).show();
+}
+</script>
 
+  <script>
+    // Smooth Scroll + Dark Mode (sudah fix)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    themeToggle.addEventListener('click', () => {
+      if (html.getAttribute('data-bs-theme') === 'dark') {
+        html.setAttribute('data-bs-theme', 'light');
+        themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+      } else {
+        html.setAttribute('data-bs-theme', 'dark');
+        themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+      }
+    });
+
+    // Fade-in Animation
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.8s ease';
+      observer.observe(el);
+    });
+  </script>
+
+  <script>
+// Sparkle Effect
+function createSparkles() {
+  const container = document.getElementById('sparkleContainer');
+  if (!container) return;
+
+  for (let i = 0; i < 80; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     
-    const size = Math.random() * 3.5 + 1.5;
+    const size = Math.random() * 4 + 2;
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
     star.style.left = `${Math.random() * 100}%`;
@@ -808,29 +573,95 @@ function createSparkle() {
     star.style.animationDelay = `-${Math.random() * 3}s`;
     
     container.appendChild(star);
-    setTimeout(() => star.remove(), 6000);
+  }
 }
 
-setInterval(createSparkle, 80);
-
-// Modal Function
-function showProjectModal(title, videoUrl) {
-    document.getElementById('modalTitle').textContent = title;
-    
-    const container = document.getElementById('modalVideoContainer');
-    container.innerHTML = `
-        <iframe width="100%" height="100%" 
-                src="${videoUrl}" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>`;
-    
-    new bootstrap.Modal(document.getElementById('projectModal')).show();
-}
+// Jalankan sparkle setelah halaman load
+window.addEventListener('load', createSparkles);
 </script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ==================== SOUND SYSTEM - FIXED ====================
+let soundEnabled = true;
+let currentSoundType = 0; 
+const soundNames = ["Meteor", "Sparkle", "Deep Bass"];
+
+const soundToggle = document.getElementById('soundToggle');
+const soundIcon = document.getElementById('soundIcon');
+const soundTypeText = document.getElementById('soundType');
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// Toggle On/Off (Single Click)
+soundToggle.addEventListener('click', (e) => {
+  // Cegah double click conflict
+  if (e.detail === 1) {
+    soundEnabled = !soundEnabled;
+    
+    soundIcon.classList.toggle('bi-volume-up-fill', soundEnabled);
+    soundIcon.classList.toggle('bi-volume-mute-fill', !soundEnabled);
+    
+    soundTypeText.style.opacity = soundEnabled ? "1" : "0.4";
+  }
+});
+
+// Ganti Jenis Sound (Double Click)
+soundToggle.addEventListener('dblclick', () => {
+  currentSoundType = (currentSoundType + 1) % 3;
+  soundTypeText.textContent = soundNames[currentSoundType];
+});
+
+// ==================== SOUND FUNCTIONS ====================
+function playMeteor() {
+  if (!soundEnabled) return;
+  const osc = audioCtx.createOscillator();
+  osc.type = 'sine'; osc.frequency.value = 850;
+  const gain = audioCtx.createGain(); gain.gain.value = 0.18;
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start(); setTimeout(() => osc.stop(), 160);
+}
+
+function playSparkle() {
+  if (!soundEnabled) return;
+  const noise = audioCtx.createBufferSource();
+  const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.12, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < buffer.length; i++) data[i] = Math.random() * 2 - 1;
+  noise.buffer = buffer;
+  const gain = audioCtx.createGain(); gain.gain.value = 0.25;
+  noise.connect(gain).connect(audioCtx.destination);
+  noise.start();
+}
+
+function playDeepBass() {
+  if (!soundEnabled) return;
+  const osc = audioCtx.createOscillator();
+  osc.type = 'sine'; osc.frequency.value = 110;
+  const gain = audioCtx.createGain(); gain.gain.value = 0.35;
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start(); setTimeout(() => osc.stop(), 320);
+}
+
+// Auto Sound Effects
+setInterval(() => {
+  if (!soundEnabled) return;
+  const rand = Math.random();
+  if (rand < 0.45) playMeteor();
+  else if (rand < 0.75) playSparkle();
+  else playDeepBass();
+}, 1900);
+
+// Visual Burst
+setInterval(() => {
+  if (!soundEnabled) return;
+  const burst = document.createElement('div');
+  burst.className = 'burst';
+  burst.style.left = Math.random() * 100 + 'vw';
+  burst.style.top = (Math.random() * 65) + 'vh';
+  document.getElementById('hero').appendChild(burst);
+  setTimeout(() => burst.remove(), 1100);
+}, 2400);
+</script>
+
 </body>
 </html>
